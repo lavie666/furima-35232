@@ -1,15 +1,15 @@
 ## usersテーブル
 
-| Column              | Type   | Options    |
-| ----------          | ------ | ---------  |
-| nick_name           | string | NOT NULL   |
-| email               | string | unique:true|
-| encrypted_password  | string | NOT NULL   |            
-| first_name          | string | NOT NULL   |          
-| last_name           | string | NOT NULL   |         
-| first_name(katakana)| string | NOT NULL   | 
-| last_name(katakana) | string | NOT NULL   |         
-| birthday            | date   | NOT NULL   | 
+| Column              | Type   | Options                  |
+| ----------          | ------ | ---------                | 
+| nick_name           | string | null: false              |
+| email               | string | null: false, unique: true|
+| encrypted_password  | string | null: false              |            
+| first_name          | string | null: false              |          
+| last_name           | string | null: false              |         
+| first_name(katakana)| string | null: false              | 
+| last_name(katakana) | string | null: false              |         
+| birthday            | date   | null: false              | 
 
 
 
@@ -19,17 +19,17 @@
 
 ## itemsテーブル
 
-| Column          | Type        | Options           |
-| ----------      | ----------- | ---------         |
-| item_name       | string      | NOT NULL          |
-| description     | text        | NOT NULL          |
-| price           | integer     | NOT NULL          |
-| category        | string      | NOT NULL          |
-| item_status     | string      | NOT NULL          |
-| delivery_charge | integer     | NOT NULL          |
-| shipping_from   | string      | NOT NULL          |
-| shipping_day    | integer     | NOT NULL          |
-| user            | references  | foreign_key: true |
+| Column             | Type        | Options           |
+| ----------         | ----------- | ---------         |
+| item_name          | string      | null: false       |
+| description        | text        | null: false       |
+| price              | integer     | null: false       |
+| category_id        | integer     | null: false       |
+| item_status_id     | integer     | null: false       |
+| delivery_charge_id | integer     | null: false       |
+| shipping_from_id   | integer     | null: false       |
+| shipping_day_id    | integer     | null: false       |
+| user               | references  | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -51,16 +51,16 @@
 
 ## shipping_addressテーブル
 
-| Column     | Type       | Options           |
-| ---------- | ------     | ---------         |
-| post_code  | string     | NOT NULL          |
-| prefectures| string     | NOT NULL          |
-| city       | string     | NOT NULL          |
-| house_num  | string     | NOT NULL          |            
-| building   | string     |                   |          
-| phone_num  | string     | NOT NULL          |         
-| item       | references | foreign_key: true |     
-| user       | references | foreign_key: true |
+| Column        | Type       | Options           |
+| ----------    | ------     | ---------         |
+| post_code     | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| house_num     | string     | null: false       |            
+| building      | string     |                   |          
+| phone_num     | string     | null: false       |         
+| buys_history  | references | foreign_key: true |     
+
 
 
 ### Association
