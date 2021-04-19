@@ -145,3 +145,5 @@ RSpec.describe User, type: :model do
     end
   end
 end
+
+# bundle exec rspec spec/models/user_spec.rb
