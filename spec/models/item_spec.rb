@@ -67,6 +67,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("User must exist")
       end
 
+      it '販売価格が300~9999999でなければ保存できない' do
+        @item.price = '100'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+
+      it '販売価格が半角数字でなければ保存できない' do
+        @item.price = '５００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+
+      it 'imageがなければ保存できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+
     end
   end
 end
