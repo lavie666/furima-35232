@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
-  before_action :illegal_check, only: [:index, :create]
+
 
   def index
     @order_address = OrderAddress.new
@@ -30,14 +30,9 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if current_user.id == @item.user.id
+    redirect_to root_path if current_user.id == @item.user.id || @item.order != nil 
   end
 
-  def illegal_check
-    if @item.order != nil 
-      redirect_to root_path
-    end 
-  end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]

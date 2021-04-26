@@ -24,4 +24,4 @@ class User < ApplicationRecord
   has_many :orders
 end
 
-# validates :first_name_katakana, presence: true, format: {with: /\A[ァ-ヶー－]+\z/ , message: "を入力してください"}
+
