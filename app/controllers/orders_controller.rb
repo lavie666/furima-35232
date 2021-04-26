@@ -2,12 +2,10 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
+  before_action :illegal_check, only: [:index, :create]
 
   def index
     @order_address = OrderAddress.new
-    if @item.order != nil 
-      redirect_to root_path
-    end 
   end
 
   def create
@@ -33,6 +31,12 @@ class OrdersController < ApplicationController
 
   def move_to_index
     redirect_to root_path if current_user.id == @item.user.id
+  end
+
+  def illegal_check
+    if @item.order != nil 
+      redirect_to root_path
+    end 
   end
 
   def pay_item
